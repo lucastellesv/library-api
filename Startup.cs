@@ -30,6 +30,7 @@ namespace Library_API
         {
             services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(Configuration.GetConnectionString("MySqlConnection").ToString(), ServerVersion.AutoDetect(Configuration.GetConnectionString("MySqlConnection").ToString())));
             services.AddControllers();
+            services.AddScoped<IRepository, Repository>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Library_API", Version = "v1" });

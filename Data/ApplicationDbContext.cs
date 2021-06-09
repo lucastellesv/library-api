@@ -20,7 +20,8 @@ namespace Library_API.Data
                         Author = "Patrick Rothfuss",
                         Description = " O Nome do Vento é um livro de fantasia escrito pelo norte-americano Patrick Rothfuss, o primeiro da série intitulada A Crônica do Matador do Rei.",
                         Gender = "Fantasia",
-                        Language = "Portugues"
+                        Language = "Portugues",
+                        Images = {},
                     }
                 }
             );
