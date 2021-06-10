@@ -52,5 +52,13 @@ namespace Library_API.Data
             return await query.ToArrayAsync();
         }
 
+        public async Task<Book> GetBooksAsyncById(int BookId)
+        {
+            IQueryable<Book> query = _context.Books;
+            query = query.AsNoTracking().Include(x => x.Images).OrderBy(b => b.Id).Where(b => b.Id == BookId);
+            return await query.FirstOrDefaultAsync();
+        }
+
+        
     }
 }

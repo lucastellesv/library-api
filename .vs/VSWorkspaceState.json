@@ -2,6 +2,7 @@
   "ExpandedNodes": [
     "",
     "\\Controllers",
+    "\\Data",
     "\\Properties"
   ],
   "SelectedNode": "\\Controllers\\BookController.cs",

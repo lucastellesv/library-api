@@ -11,8 +11,9 @@ namespace Library_API.Data
         Task<bool> SaveChangesAsync();
 
         Task<Book[]> GetAllBooksAsync();
-
         Task<Book[]> GetBooksAsyncByName(string BookTitle);
+        Task<Book> GetBooksAsyncById(int BookId);
+
 
 
     }

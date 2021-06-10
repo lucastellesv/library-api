@@ -47,19 +47,19 @@ namespace Library_API.Controllers
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "O Banco de dados falhou");
             }
-            
+
         }
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Book book)
         {
             try
-            {   
-        
+            {
+
                 _repo.Add(book);
                 if (await _repo.SaveChangesAsync())
                 {
-                    return Created($"/api/book/teste", book);
+                    return Created($"/api/book/", book);
                 }
             }
             catch (System.Exception)
@@ -68,5 +68,27 @@ namespace Library_API.Controllers
             }
             return BadRequest();
         }
+
+        [HttpDelete("{BookId}")]
+       public async Task<IActionResult> Delete(int BookId)
+         {
+            try
+             {
+                 var book = await _repo.GetBooksAsyncById(BookId);
+                 if(book == null) return NotFound();
+
+                 _repo.Delete(book);
+
+                 if(await _repo.SaveChangesAsync())
+                 {
+                     return Ok();
+                 }
+            }
+             catch (System.Exception)
+             {
+                 return this.StatusCode(StatusCodes.Status500InternalServerError, "O Banco de dados falhou");
+             }
+             return BadRequest();
+         }
     }
 }
