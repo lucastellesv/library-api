@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Library_API.Migrations
 {
-    public partial class inital : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -54,11 +54,6 @@ namespace Library_API.Migrations
                         onDelete: ReferentialAction.Restrict);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.InsertData(
-                table: "Books",
-                columns: new[] { "Id", "Author", "Description", "Gender", "Language", "Title" },
-                values: new object[] { 1, "Patrick Rothfuss", " O Nome do Vento é um livro de fantasia escrito pelo norte-americano Patrick Rothfuss, o primeiro da série intitulada A Crônica do Matador do Rei.", "Fantasia", "Portugues", "O nome do vento" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Image_BookId",

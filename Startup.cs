@@ -30,6 +30,7 @@ namespace Library_API
         {
             services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(Configuration.GetConnectionString("MySqlConnection").ToString(), ServerVersion.AutoDetect(Configuration.GetConnectionString("MySqlConnection").ToString())));
             services.AddControllers();
+            services.AddCors();
             services.AddScoped<IRepository, Repository>();
             services.AddSwaggerGen(c =>
             {
@@ -48,7 +49,11 @@ namespace Library_API
             }
 
             app.UseHttpsRedirection();
-
+            app.UseCors(option => option
+                .AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+            );
             app.UseRouting();
 
             //app.UseAuthorization();

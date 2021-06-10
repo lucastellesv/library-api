@@ -38,7 +38,7 @@ namespace Library_API.Data
         {
             IQueryable<Book> query = _context.Books;
 
-            query = query.AsNoTracking().OrderBy(b => b.Id);
+            query = query.AsNoTracking().Include(x => x.Images).OrderBy(b => b.Title);
 
             return await query.ToArrayAsync();
         }
@@ -47,9 +47,10 @@ namespace Library_API.Data
         {
             IQueryable<Book> query = _context.Books;
 
-            query = query.AsNoTracking().OrderBy(b => b.Title).Where(book => book.Title == BookTitle);
+            query = query.AsNoTracking().Include(x => x.Images).OrderBy(b => b.Title).Where(book => book.Title == BookTitle);
 
             return await query.ToArrayAsync();
         }
+
     }
 }
