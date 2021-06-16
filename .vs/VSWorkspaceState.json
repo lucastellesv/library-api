@@ -3,8 +3,9 @@
     "",
     "\\Controllers",
     "\\Data",
+    "\\Models",
     "\\Properties"
   ],
-  "SelectedNode": "\\Controllers\\BookController.cs",
+  "SelectedNode": "\\Models\\Image.cs",
   "PreviewInSolutionExplorer": false
 }

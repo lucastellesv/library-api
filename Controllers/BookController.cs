@@ -35,12 +35,12 @@ namespace Library_API.Controllers
 
 
 
-        [HttpGet("{BookTitle}")]
-        public async Task<IActionResult> Get(string BookTitle)
+        [HttpGet("{BookId}")]
+        public async Task<IActionResult> Get(int BookId)
         {
             try
             {
-                var result = await _repo.GetBooksAsyncByName(BookTitle);
+                var result = await _repo.GetBooksAsyncById(BookId);
                 return Ok(result);
             }
             catch (System.Exception)
@@ -78,6 +78,28 @@ namespace Library_API.Controllers
                  if(book == null) return NotFound();
 
                  _repo.Delete(book);
+
+                 if(await _repo.SaveChangesAsync())
+                 {
+                     return Ok();
+                 }
+            }
+             catch (System.Exception)
+             {
+                 return this.StatusCode(StatusCodes.Status500InternalServerError, "O Banco de dados falhou");
+             }
+             return BadRequest();
+         }
+
+         [HttpPut("{BookId}")]
+       public async Task<IActionResult> Put(int BookId)
+         {
+            try
+             {
+                 var book = await _repo.GetBooksAsyncById(BookId);
+                 if(book == null) return NotFound();
+
+                 _repo.Update(book);
 
                  if(await _repo.SaveChangesAsync())
                  {

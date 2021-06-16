@@ -43,14 +43,6 @@ namespace Library_API.Data
             return await query.ToArrayAsync();
         }
 
-        public async Task<Book[]> GetBooksAsyncByName(string BookTitle)
-        {
-            IQueryable<Book> query = _context.Books;
-
-            query = query.AsNoTracking().Include(x => x.Images).OrderBy(b => b.Title).Where(book => book.Title == BookTitle);
-
-            return await query.ToArrayAsync();
-        }
 
         public async Task<Book> GetBooksAsyncById(int BookId)
         {
@@ -59,6 +51,5 @@ namespace Library_API.Data
             return await query.FirstOrDefaultAsync();
         }
 
-        
     }
 }
