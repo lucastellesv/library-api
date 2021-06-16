@@ -142,3 +142,16 @@ L:\Programacao\curso-vue\Library_API\bin\Debug\net5.0\Microsoft.AspNetCore.Crypt
 L:\Programacao\curso-vue\Library_API\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 L:\Programacao\curso-vue\Library_API\bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll
 L:\Programacao\curso-vue\Library_API\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
+L:\Programacao\curso-vue\Library_API\bin\Debug\net5.0\MailKit.dll
+L:\Programacao\curso-vue\Library_API\bin\Debug\net5.0\MimeKit.dll
+L:\Programacao\curso-vue\Library_API\bin\Debug\net5.0\BouncyCastle.Crypto.dll
+L:\Programacao\curso-vue\Library_API\bin\Debug\net5.0\Library_API.Views.dll
+L:\Programacao\curso-vue\Library_API\bin\Debug\net5.0\Library_API.Views.pdb
+L:\Programacao\curso-vue\Library_API\obj\Debug\net5.0\Library_API.RazorAssemblyInfo.cache
+L:\Programacao\curso-vue\Library_API\obj\Debug\net5.0\Library_API.RazorAssemblyInfo.cs
+L:\Programacao\curso-vue\Library_API\obj\Debug\net5.0\Library_API.TagHelpers.input.cache
+L:\Programacao\curso-vue\Library_API\obj\Debug\net5.0\Library_API.TagHelpers.output.cache
+L:\Programacao\curso-vue\Library_API\obj\Debug\net5.0\Library_API.RazorCoreGenerate.cache
+L:\Programacao\curso-vue\Library_API\obj\Debug\net5.0\Razor\Views\Email\EmailTemplate.cshtml.g.cs
+L:\Programacao\curso-vue\Library_API\obj\Debug\net5.0\Library_API.RazorTargetAssemblyInfo.cs
+L:\Programacao\curso-vue\Library_API\obj\Debug\net5.0\Library_API.Views.pdb

@@ -77,5 +77,96 @@ namespace Library_API.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("forgot-password")]
+        [AllowAnonymous]
+        public async Task<IActionResult> ForgotPassword(User usr)
+        {
+            ForgotPasswordModel response = await _userService.ForgotPassword(usr);
+            object responseObject = new { message = response.Message, userId = response.UserId };
+            switch (response.StatusCode)
+            {
+                case 200:
+                    return Ok(responseObject);
+                case 500:
+                    return StatusCode(500, responseObject);
+                case 422:
+                    return UnprocessableEntity(responseObject);
+                case 409:
+                    return Conflict(responseObject);
+                case 402:
+                    return Unauthorized(responseObject);
+            }
+            return null;
+        }
+
+        [HttpPost]
+        [Route("forgot-password/validate")]
+        [AllowAnonymous]
+        public async Task<IActionResult> ValidateResetCode(ResetCode code)
+        {
+            ResponseModel response = await _userService.ValidateResetCode(code);
+            object responseObject = new { message = response.Message };
+            switch (response.StatusCode)
+            {
+                case 200:
+                    return Ok(responseObject);
+                case 500:
+                    return StatusCode(500, responseObject);
+                case 422:
+                    return UnprocessableEntity(responseObject);
+                case 409:
+                    return Conflict(responseObject);
+                case 402:
+                    return Unauthorized(responseObject);
+            }
+            return null;
+        }
+
+        [HttpPost]
+        [Route("forgot-password/reset")]
+        [AllowAnonymous]
+        public async Task<IActionResult> ResetPasswordByCode(ResetPasswordModel model)
+        {
+            ResponseModel response = await _userService.ResetPasswordByCode(model);
+            object responseObject = new { message = response.Message };
+            switch (response.StatusCode)
+            {
+                case 200:
+                    return Ok(responseObject);
+                case 500:
+                    return StatusCode(500, responseObject);
+                case 422:
+                    return UnprocessableEntity(responseObject);
+                case 409:
+                    return Conflict(responseObject);
+                case 402:
+                    return Unauthorized(responseObject);
+            }
+            return null;
+        }
+
+        [HttpPost]
+        [Route("password/update")]
+        [Authorize]
+        public async Task<IActionResult> UpdatePassword(UpdatePasswordModel usr)
+        {
+            ResponseModel response = await _userService.UpdatePassword(usr);
+            object responseObject = new { message = response.Message };
+            switch (response.StatusCode)
+            {
+                case 200:
+                    return Ok(responseObject);
+                case 500:
+                    return StatusCode(500, responseObject);
+                case 422:
+                    return UnprocessableEntity(responseObject);
+                case 409:
+                    return Conflict(responseObject);
+                case 402:
+                    return Unauthorized(responseObject);
+            }
+            return null;
+        }
     }
 }

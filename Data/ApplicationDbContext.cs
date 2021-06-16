@@ -16,6 +16,7 @@ namespace Library_API.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base (options){ }
         public DbSet<Book> Books {get; set;}
         public DbSet<User> Users { get; set; }
-        
+        public DbSet<ResetCode> ResetCodes { get; set; }
+
     }
 }

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library_API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210615223908_second")]
-    partial class second
+    [Migration("20210616182027_first")]
+    partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -72,6 +72,25 @@ namespace Library_API.Migrations
                     b.HasIndex("BookId");
 
                     b.ToTable("Image");
+                });
+
+            modelBuilder.Entity("Library_API.Models.ResetCode", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("Code")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ResetCodes");
                 });
 
             modelBuilder.Entity("Library_API.Models.User", b =>
@@ -272,6 +291,15 @@ namespace Library_API.Migrations
                     b.HasOne("Library_API.Models.Book", null)
                         .WithMany("Images")
                         .HasForeignKey("BookId");
+                });
+
+            modelBuilder.Entity("Library_API.Models.ResetCode", b =>
+                {
+                    b.HasOne("Library_API.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -71,10 +71,13 @@ namespace Library_API
              .AddEntityFrameworkStores<ApplicationDbContext>()
              .AddDefaultTokenProviders();
 
-
+            services.AddControllersWithViews();
+            services.AddRazorPages();
             services.AddCors();
             services.AddScoped<IRepository, Repository>();
-            services.AddScoped<UserService>();
+            services.AddScoped<UserService, UserService>();
+            services.AddScoped<IViewRenderService, ViewRenderService>();
+            services.AddScoped<EmailService, EmailService>();
             services.AddHttpClient();
 
             services.AddSwaggerGen(c =>
@@ -122,11 +125,11 @@ namespace Library_API
 
             User poweruser = new User
             {  
-                UserName = "telles",
-                Email = "meu@gmail.com"
+                UserName = "lucastellesv",
+                Email = "lucasvalone@hotmail.com"
             };
 
-            string UserPassword = "123456";
+            string UserPassword = "25131974";
             User _user = null;
             try
             {

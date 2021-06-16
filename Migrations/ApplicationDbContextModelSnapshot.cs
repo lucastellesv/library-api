@@ -72,6 +72,25 @@ namespace Library_API.Migrations
                     b.ToTable("Image");
                 });
 
+            modelBuilder.Entity("Library_API.Models.ResetCode", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("Code")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ResetCodes");
+                });
+
             modelBuilder.Entity("Library_API.Models.User", b =>
                 {
                     b.Property<string>("Id")
@@ -270,6 +289,15 @@ namespace Library_API.Migrations
                     b.HasOne("Library_API.Models.Book", null)
                         .WithMany("Images")
                         .HasForeignKey("BookId");
+                });
+
+            modelBuilder.Entity("Library_API.Models.ResetCode", b =>
+                {
+                    b.HasOne("Library_API.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
