@@ -101,7 +101,7 @@ namespace Library_API.Services
 
         public ResponseModel Delete(int id)
         {
-            var FindBookId = db.Books.Where(x => x.Id == id).FirstOrDefault();
+            var FindBookId = db.Books.Where(x => x.Id == id).Include(x=> x.Images).FirstOrDefault();
             if (FindBookId != null)
             {
                 db.Remove(FindBookId);
