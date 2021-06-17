@@ -8,5 +8,6 @@ namespace Library_API.Models
 
         [Required(ErrorMessage = "Url is needed.")]
         public string Url { get; set; }
+        public string FileExtension { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Library_API.Data;
 using Library_API.Models;
+using Library_API.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,19 +13,18 @@ namespace Library_API.Controllers
     [ApiController]
     public class BookController : Controller
     {
-        public IRepository _repo { get; }
-        public BookController(IRepository repo)
+        public BookService _context;
+        public BookController(BookService context)
         {
-            _repo = repo;
-
+            _context = context;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public  IActionResult Get()
         {
             try
             {
-                var result = await _repo.GetAllBooksAsync();
+                var result =  _context.List();
                 return Ok(result);
             }
             catch (System.Exception)
@@ -36,11 +36,11 @@ namespace Library_API.Controllers
 
 
         [HttpGet("{BookId}")]
-        public async Task<IActionResult> Get(int BookId)
+        public IActionResult Get(int BookId)
         {
             try
             {
-                var result = await _repo.GetBooksAsyncById(BookId);
+                var result = _context.GetBook(BookId);
                 return Ok(result);
             }
             catch (System.Exception)
@@ -51,15 +51,15 @@ namespace Library_API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Book book)
+        public IActionResult Post([FromBody] Book book)
         {
             try
             {
-
-                _repo.Add(book);
-                if (await _repo.SaveChangesAsync())
+                ResponseModel model = _context.Add(book);
+                switch (model.StatusCode)
                 {
-                    return Created($"/api/book/", book);
+                    case 200: return Ok(model);
+                    default: return Conflict(model);
                 }
             }
             catch (System.Exception)
@@ -74,37 +74,12 @@ namespace Library_API.Controllers
          {
             try
              {
-                 var book = await _repo.GetBooksAsyncById(BookId);
-                 if(book == null) return NotFound();
-
-                 _repo.Delete(book);
-
-                 if(await _repo.SaveChangesAsync())
-                 {
-                     return Ok();
-                 }
-            }
-             catch (System.Exception)
-             {
-                 return this.StatusCode(StatusCodes.Status500InternalServerError, "O Banco de dados falhou");
-             }
-             return BadRequest();
-         }
-
-         [HttpPut("{BookId}")]
-       public async Task<IActionResult> Put(int BookId)
-         {
-            try
-             {
-                 var book = await _repo.GetBooksAsyncById(BookId);
-                 if(book == null) return NotFound();
-
-                 _repo.Update(book);
-
-                 if(await _repo.SaveChangesAsync())
-                 {
-                     return Ok();
-                 }
+                ResponseModel model = _context.Delete(BookId);
+                switch (model.StatusCode)
+                {
+                    case 200: return Ok(model);
+                    default: return NotFound(model);
+                }
             }
              catch (System.Exception)
              {

@@ -74,7 +74,7 @@ namespace Library_API
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddCors();
-            services.AddScoped<IRepository, Repository>();
+            services.AddScoped<BookService, BookService>();
             services.AddScoped<UserService, UserService>();
             services.AddScoped<IViewRenderService, ViewRenderService>();
             services.AddScoped<EmailService, EmailService>();
@@ -107,7 +107,7 @@ namespace Library_API
             app.UseAuthentication();
 
             app.UseAuthorization();
-
+            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {
