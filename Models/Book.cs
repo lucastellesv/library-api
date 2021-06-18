@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+
+
 namespace Library_API.Models
 {
     public class Book
     {
-
-
-
+  
         public int Id { get; set; }
 
 
@@ -35,6 +35,7 @@ namespace Library_API.Models
 
         [Required(ErrorMessage = "Image is needed.")]
         public List<Image> Images {get; set; }
+
 
     }
 }

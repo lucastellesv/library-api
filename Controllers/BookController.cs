@@ -1,9 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Library_API.Data;
 using Library_API.Models;
 using Library_API.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using static Library_API.Models.BookModels;
+
 namespace Library_API.Controllers
 {
     [Route("api/[controller]")]
@@ -30,7 +33,26 @@ namespace Library_API.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("list")]
+        public IActionResult List(BookFIlterModel filter)
+        {
+            try
+            {
+                var bookList = _context.List(filter);
+                var teste = new
+                {
+                    books = bookList.Books,
+                    pager = bookList.Pager
+                };
 
+                return Ok(teste);
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(500, "Ocorreu um erro");
+            }
+        }
 
 
         [HttpGet("{BookId}")]

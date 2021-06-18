@@ -44,7 +44,7 @@ namespace Library_API.Services
                     new Claim(ClaimTypes.Name, user.UserName),
                     new Claim(ClaimTypes.Authentication, user.Id)
                 }),
-                Expires = DateTime.UtcNow.AddDays(1),
+                Expires = DateTime.UtcNow.AddHours(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
                 Issuer = configuration.GetSection("TokenAuthentication")["Issuer"],
                 Audience = configuration.GetSection("TokenAuthentication")["Audience"]

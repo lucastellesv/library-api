@@ -80,6 +80,7 @@ namespace Library_API
             services.AddScoped<EmailService, EmailService>();
             services.AddHttpClient();
 
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Library_API", Version = "v1" });

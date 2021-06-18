@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
+using static Library_API.Models.BookModels;
 
 namespace Library_API.Services
 {
@@ -26,6 +26,13 @@ namespace Library_API.Services
             return db.Books.Include(x => x.Images).ToList();
         }
 
+        public BookViewModel List(BookFIlterModel filter)
+        {
+            IQueryable<Book> Books = db.Books;
+            Books = filter.Title != null ? Books.Where(x => x.Title.Contains(filter.Title)) : Books;
+            BookViewModel model = new BookViewModel(Books, new Pager(Books.Count(), filter.Page));
+            return model;
+        }
 
         public Book GetBook(int id)
         {
