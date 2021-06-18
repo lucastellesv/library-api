@@ -4,9 +4,6 @@ using Library_API.Models;
 using Library_API.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
-
-
 namespace Library_API.Controllers
 {
     [Route("api/[controller]")]
@@ -32,6 +29,7 @@ namespace Library_API.Controllers
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "O Banco de dados falhou");
             }
         }
+
 
 
 
@@ -68,6 +66,7 @@ namespace Library_API.Controllers
             }
             return BadRequest();
         }
+
 
         [HttpDelete("{BookId}")]
        public async Task<IActionResult> Delete(int BookId)

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library_API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210616182027_first")]
+    [Migration("20210617214833_first")]
     partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -62,6 +62,9 @@ namespace Library_API.Migrations
 
                     b.Property<int?>("BookId")
                         .HasColumnType("int");
+
+                    b.Property<string>("FileExtension")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Url")
                         .IsRequired()

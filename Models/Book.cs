@@ -6,7 +6,7 @@ namespace Library_API.Models
     {
 
 
-        [Key]
+
         public int Id { get; set; }
 
 
